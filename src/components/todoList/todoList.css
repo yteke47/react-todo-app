@@ -1,0 +1,48 @@
+.todoList {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.todoList .todo {
+    background-color: #ededed;
+    padding: 10px;
+    margin: 10px 0;
+    color: #212121;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.todoList .todo:hover {
+    transition: all 0.5s;
+}
+
+.todoList .todo .task {
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.todoList .todo .buttons-container {
+    padding: 0;
+    margin: 0;
+}
+
+.todoList .todo .buttons-container>button {
+    padding: 4px;
+    margin: 4px;
+    background-color: #911bf2;
+    border: 0;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.todoList .todo .buttons-container .icon {
+    color: aliceblue;
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+}

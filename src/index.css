@@ -1,0 +1,6 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: rgb(0, 99, 184);
+  background: linear-gradient(90deg, rgba(0, 99, 184, 1) 0%, rgba(10, 180, 255, 1) 48%, rgba(0, 212, 255, 1) 100%);
+}
