@@ -12,8 +12,6 @@ export default function TodoCounter() {
 
     const isButtonDisabled = todos.length > 0 ? false : true;
 
-    console.log(isButtonDisabled);
-
     return (
         <div className='todoCounterWrapper'>
             <div>

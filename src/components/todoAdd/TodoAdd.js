@@ -21,7 +21,7 @@ export default function TodoAdd() {
             return false;
         }
         setTodos([
-            { id: uuidv4(), task: todo.task.trim(), isMarked: false, createdAt: new Date().toISOString() },
+            { id: uuidv4(), task: todo.task, isMarked: false, createdAt: new Date().toISOString() },
             ...todos
         ]);
         setTodo(initialState);
