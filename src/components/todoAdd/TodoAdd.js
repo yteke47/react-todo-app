@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { MdAdd } from 'react-icons/md';
-import { toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { v4 as uuidv4 } from 'uuid';
+import TodoContext from '../../context/TodoContext';
 
-import './todoAdd.css'
+import './TodoAdd.css'
 
 const initialState = { id: null, task: "", isMarked: false, createdAt: Date }
 
-function TodoAdd({ addTodos, todos }) {
+export default function TodoAdd() {
     const [todo, setTodo] = useState(initialState);
+    const { todos, setTodos } = useContext(TodoContext);
 
     const handleInput = (e) => {
         setTodo({ ...todo, [e.target.name]: e.target.value })
@@ -17,17 +18,16 @@ function TodoAdd({ addTodos, todos }) {
     const submit = (e) => {
         e.preventDefault();
         if (!/\S/.test(todo.task)) {
-            toast.warn("Boş not eklemeyezsin!");
             return false;
         }
-        todo.id = crypto.randomUUID();
-        todo.createdAt = new Date();
-        addTodos([todo, ...todos]);
+        setTodos([
+            { id: uuidv4(), task: todo.task, isMarked: false, createdAt: new Date().toISOString() },
+            ...todos
+        ]);
         setTodo(initialState);
-        toast.success("Notunu başarıyla ekledin!");
-
-        console.log(todo)
     }
+
+    const isButtonDisabled = todo.task.length > 0 ? false : true;
 
     return (
         <div className='todoAdd'>
@@ -38,12 +38,10 @@ function TodoAdd({ addTodos, todos }) {
                     value={todo.task}
                     placeholder='Not Ekle'
                 />
-                <button>
+                <button disabled={isButtonDisabled} style={{ opacity: isButtonDisabled ? 0.5 : 1 }}>
                     <MdAdd onSubmit={submit} className='icon'></MdAdd>
                 </button>
             </form>
         </div>
     )
 }
-
-export default TodoAdd

@@ -1,36 +1,21 @@
-import TodoAdd from './components/todoAdd';
-import TodoList from './components/todoList';
-import TodoCounter from './components/todoCounter';
+import TodoAdd from './components/todoAdd/TodoAdd';
+import TodoList from './components/todoList/TodoList';
+import TodoCounter from './components/todoCounter/TodoCounter';
+import { TodoProvider } from './context/TodoProvider';
 
 import './App.css';
 
-import { useState, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-
-function App() {
-  const [todos, setTodos] = useState(localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : []);
-
-  useEffect(() => {
-    console.log(todos)
-  })
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos])
-
+export default function App() {
   return (
-    <div className="App">
-      <ToastContainer></ToastContainer>
-      <div className='Wrapper'>
-        <h1>Todo App!</h1>
-        <TodoAdd addTodos={setTodos} todos={todos}></TodoAdd>
-        <TodoList todos={todos} updateTodos={setTodos}></TodoList>
-        {todos.length > 0 &&
-          <TodoCounter todos={todos} updateTodos={setTodos}></TodoCounter>
-        }
+    <TodoProvider>
+      <div className="App">
+        <div className='Wrapper'>
+          <h1>Todo App!</h1>
+          <TodoAdd />
+          <TodoList />
+          <TodoCounter />
+        </div>
       </div>
-    </div>
+    </TodoProvider>
   );
 }
-
-export default App;
