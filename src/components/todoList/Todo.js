@@ -2,16 +2,9 @@ import { MdDone, MdOutlineDeleteSweep, MdRemoveDone } from 'react-icons/md';
 
 import './Todo.css'
 
-
 export function Todo({ task, isMarked, deleteTask, markTask }) {
-    const styles = {
-        mark: {
-            backgroundColor: "#5759de",
-            color: "#ffffff"
-        }
-    };
     return (
-        <div style={isMarked ? styles.mark : null} className='todo'>
+        <div className={`todo ${isMarked ? 'marked' : ''}`}>
             <span className='task'>{task}</span>
             <div className='buttons-container'>
                 <button onClick={markTask}>

@@ -1,12 +1,10 @@
 import { Todo } from './Todo';
-import TodoContext from '../../context/TodoContext';
-import { useContext } from 'react';
+import { useTodo } from '../../context/TodoContext';
 
 import './TodoList.css'
 
 export default function TodoList() {
-    const { todos, setTodos } = useContext(TodoContext);
-
+    const { todos, setTodos } = useTodo();
 
     const deleteTask = (id) => {
         setTodos(

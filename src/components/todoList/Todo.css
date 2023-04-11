@@ -1,13 +1,15 @@
 .todo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #ededed;
     padding: 10px;
     margin: 10px 0;
-    color: #212121;
     border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
 
+.todo.marked {
+    background-color: #52bd64;
 }
 
 .todo:hover {
@@ -19,24 +21,30 @@
     max-width: 70%;
 }
 
+.todo.marked .task {
+    color: #fffefe;
+    text-decoration: line-through solid #fffefe;
+}
+
 .todo .buttons-container {
     padding: 0;
     margin: 0;
 }
 
 .todo .buttons-container>button {
-    padding: 4px;
+    padding: 6px;
     margin: 4px;
-    background-color: #911bf2;
+    background-color: #374151;
     border: 0;
-    border-radius: 4px;
-    width: 30px;
-    height: 30px;
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
 }
 
 .todo .buttons-container .icon {
-    color: aliceblue;
+    color: #fff;
+    font-size: 1.4em;
     width: 100%;
     height: 100%;
 }

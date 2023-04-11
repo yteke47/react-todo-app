@@ -1,10 +1,9 @@
-import { useContext } from 'react'
-import TodoContext from '../../context/TodoContext';
+import { useTodo } from '../../context/TodoContext';
 
 import './TodoCounter.css'
 
 export default function TodoCounter() {
-    const { todos, setTodos } = useContext(TodoContext);
+    const { todos, setTodos } = useTodo();
 
     const deleteAllTodos = () => {
         setTodos([]);
@@ -19,7 +18,7 @@ export default function TodoCounter() {
                     {todos.length} notun var
                 </p>
             </div>
-            <div><button disabled={isButtonDisabled} style={{ opacity: isButtonDisabled ? 0.5 : 1 }} onClick={deleteAllTodos}>Tüm notları sil</button></div>
+            <div><button disabled={isButtonDisabled} style={{ opacity: isButtonDisabled ? 0.5 : 1 }} onClick={deleteAllTodos}>Tamamlananları sil</button></div>
         </div>
     )
 }
