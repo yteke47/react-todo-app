@@ -19,17 +19,15 @@ export default function TodoAdd() {
     }
     const submit = (e) => {
         e.preventDefault();
-        if (!/\S/.test(todo.task)) {
-            return false;
-        }
+        if (!todo.task.trim()) return false;
         setTodos([
-            { id: uuidv4(), task: todo.task, isMarked: false, createdAt: new Date().toISOString() },
+            { id: uuidv4(), task: todo.task.trim(), isMarked: false, createdAt: new Date().toISOString() },
             ...todos
         ]);
         setTodo(initialState);
     }
 
-    const isButtonDisabled = !todo.task;
+    const isButtonDisabled = !todo.task.trim();
 
     return (
         <div className='todoAdd'>
@@ -38,7 +36,7 @@ export default function TodoAdd() {
                     onChange={handleChange}
                     name='task'
                     value={todo.task}
-                    placeholder='Not Ekle'
+                    placeholder='Add todo'
                 />
                 <button disabled={isButtonDisabled} style={{ opacity: isButtonDisabled ? 0.5 : 1 }}>
                     <MdAdd onSubmit={submit} className='icon'></MdAdd>
