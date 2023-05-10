@@ -1,12 +1,10 @@
 import { Todo } from './Todo';
-import TodoContext from '../../context/TodoContext';
-import { useContext } from 'react';
+import { useTodo } from '../../context/TodoContext';
 
 import './TodoList.css'
 
 export default function TodoList() {
-    const { todos, setTodos } = useContext(TodoContext);
-
+    const { todos, setTodos } = useTodo();
 
     const deleteTask = (id) => {
         setTodos(
@@ -18,6 +16,16 @@ export default function TodoList() {
         const updatedTodos = todos.map(todo => {
             if (todo.id === id) {
                 return { ...todo, isMarked: !todo.isMarked }
+            }
+            return todo
+        })
+        setTodos(updatedTodos)
+    }
+
+    const updateTodos = (id, newTask) => {
+        const updatedTodos = todos.map(todo => {
+            if (todo.id === id) {
+                return { ...todo, task: newTask.trim() }
             }
             return todo
         })
@@ -36,6 +44,7 @@ export default function TodoList() {
                             isMarked={todo.isMarked}
                             deleteTask={() => { deleteTask(todo.id) }}
                             markTask={() => { markTask(todo.id) }}
+                            updateTodos={(newTask) => { updateTodos(todo.id, newTask) }}
                         />
                     )
                 })
