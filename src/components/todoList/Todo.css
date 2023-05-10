@@ -12,33 +12,59 @@
     background-color: #52bd64;
 }
 
-.todo:hover {
-    transition: all 0.5s;
-}
-
-.todo .task {
-    word-wrap: break-word;
-    max-width: 70%;
-}
-
 .todo.marked .task {
     color: #fffefe;
     text-decoration: line-through solid #fffefe;
 }
 
-.todo .buttons-container {
+.todo:hover {
+    transition: all 0.5s;
+}
+
+.todo .tasks-container .todo-update {
+    position: relative;
     padding: 0;
     margin: 0;
 }
 
+.todo .tasks-container .todoEdit {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.todo .tasks-container .edit-cancel-button {
+    all: unset;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 5px 0 0;
+    cursor: pointer;
+}
+
+.todo .tasks-container .edit-cancel-button .edit-cancel-icon {
+    margin: 0;
+    padding: 0;
+}
+
+.todo .buttons-container {
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
 .todo .buttons-container>button {
     padding: 6px;
-    margin: 4px;
+    margin-left: 4px;
     background-color: #374151;
     border: 0;
     border-radius: 6px;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
 }
 

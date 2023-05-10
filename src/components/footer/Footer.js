@@ -18,7 +18,7 @@ export default function Footer() {
         <div className='todoCounterWrapper'>
             <div>
                 <p>
-                    {remaningTodos} pending tasks
+                    {remaningTodos > 0 ? `${remaningTodos} pending tasks` : `No task`}
                 </p>
             </div>
             <div><button disabled={isButtonDisabled} style={{ opacity: isButtonDisabled ? 0.5 : 1 }} onClick={deleteCompletedTodo}>Clear completed</button></div>

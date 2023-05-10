@@ -22,6 +22,16 @@ export default function TodoList() {
         setTodos(updatedTodos)
     }
 
+    const updateTodos = (id, newTask) => {
+        const updatedTodos = todos.map(todo => {
+            if (todo.id === id) {
+                return { ...todo, task: newTask.trim() }
+            }
+            return todo
+        })
+        setTodos(updatedTodos)
+    }
+
     return (
         <div className='todoList'>
             {
@@ -34,6 +44,7 @@ export default function TodoList() {
                             isMarked={todo.isMarked}
                             deleteTask={() => { deleteTask(todo.id) }}
                             markTask={() => { markTask(todo.id) }}
+                            updateTodos={(newTask) => { updateTodos(todo.id, newTask) }}
                         />
                     )
                 })
