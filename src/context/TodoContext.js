@@ -2,11 +2,15 @@ import { createContext, useState, useEffect, useContext } from 'react';
 
 const TodoContext = createContext();
 
+const parseLocalStorage = (itemName) => {
+    return localStorage.getItem(itemName)
+        ? JSON.parse(localStorage.getItem(itemName))
+        : []
+}
+
 const TodoProvider = ({ children }) => {
     const [todos, setTodos] = useState(
-        localStorage.getItem('todos')
-            ? JSON.parse(localStorage.getItem('todos'))
-            : []
+        parseLocalStorage("todos")
     );
 
     useEffect(() => {
