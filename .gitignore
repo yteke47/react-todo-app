@@ -290,3 +290,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/react,node,git,windows
 # End of https://www.toptal.com/developers/gitignore/api/react,node,git,windows
+# Local Netlify folder
+.netlify
