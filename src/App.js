@@ -1,21 +1,80 @@
-import TodoAdd from './components/todoAdd/TodoAdd';
-import TodoList from './components/todoList/TodoList';
-import Footer from './components/footer/Footer';
-import { TodoProvider } from './context/TodoContext';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
+import { useAuth } from './context/AuthContext';
+import httpClient from './api/httpClient';
+import TodoComponent from './components/todoComponent';
+import LoginComponent from './components/loginComponent';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
+  const { auth, logOut } = useAuth();
+
+  httpClient.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      notifyError(error.response);
+      if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        logOut();
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  const notifyError = (error) => {
+    let errorMessage = "Bir hata oluştu.";
+
+    switch (error.status) {
+      case 400:
+        errorMessage = "Geçersiz istek.";
+        break;
+      case 401:
+        errorMessage = "Yetkilendirme hatası.";
+        break;
+      case 403:
+        errorMessage = "Erişim reddedildi.";
+        break;
+      case 404:
+        errorMessage = "Kaynak bulunamadı.";
+        break;
+      case 409:
+        errorMessage = "Kullanıcı zaten kayıtlı!";
+        break;
+      case 500:
+        errorMessage = "Sunucu hatası.";
+        break;
+      default:
+        errorMessage = "Bir hata oluştu.";
+        break;
+    }
+
+    toast.error(errorMessage, {
+      type: error
+    });
+  };
+
+
   return (
-    <TodoProvider>
-      <div className="App">
-        <div className='container'>
-          <h1>Todo App</h1>
-          <TodoAdd />
-          <TodoList />
-          <Footer />
-        </div>
+    <div className="App">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <div className="container">
+        {auth ? <TodoComponent /> : <LoginComponent />}
       </div>
-    </TodoProvider>
+    </div>
   );
 }

@@ -1,0 +1,54 @@
+.loginContainer .loginForm {
+    width: 100%;
+    height: 100%;
+}
+
+.loginContainer .loginForm>div {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.loginContainer .loginForm .label {
+    font-size: medium;
+    padding-bottom: 10px;
+}
+
+.loginContainer .loginForm input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #a0a0a0;
+    border-radius: 8px;
+}
+
+.loginContainer .loginForm input:focus {
+    outline: none !important;
+    border-color: #719ECE;
+}
+
+.errorInput {
+    border-color: #b01b10;
+}
+
+.loginContainer .loginForm .error {
+    font-size: small;
+    padding: 5px;
+    color: #b01b10;
+}
+
+.loginContainer hr {
+    margin: 20px 0;
+}
+
+.loginContainer button {
+    width: 100%;
+    padding: 6px;
+    background-color: #911bf2;
+    color: rgb(243, 243, 243);
+    border: 0;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 8px;
+}

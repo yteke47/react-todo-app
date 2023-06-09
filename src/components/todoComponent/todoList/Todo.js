@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MdDone, MdOutlineDeleteSweep, MdRemoveDone, MdHighlightOff, MdEdit } from 'react-icons/md';
-import { useTodo } from '../../context/TodoContext';
+import { useTodo } from '../../../context/TodoContext';
 
 import './Todo.css'
 
@@ -8,11 +8,11 @@ import './Todo.css'
 export function Todo({ task, isMarked, deleteTask, markTask, updateTodos }) {
     const [edit, setEdit] = useState(false);
     const [todo, setTodo] = useState('');
-    const { todos } = useTodo();
+    const { todoList } = useTodo();
 
     useEffect(() => {
         setEdit(false)
-    }, [todos]);
+    }, [todoList]);
 
     const handleEdit = () => {
         if (isMarked) return false;

@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .container {
@@ -19,7 +20,6 @@
     padding: 24px;
     width: 350px;
     background-color: #ffffff;
-    height: 100%;
     margin: 100px 0;
 }
 
