@@ -1,3 +1,7 @@
 # React Todo App!
  
-* Add, save, edit and complete your notes with [React Todo App](https://yteke47-react-todo-app.netlify.app/)
+A Todo App with React, Express JS and MongoDB
+
+* Explore [React Todo App](https://yteke47-react-todo-app.netlify.app/)
+* Explore [Backend](https://github.com/yteke47/todo-app-backend) repo 
+
