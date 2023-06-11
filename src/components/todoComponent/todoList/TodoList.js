@@ -7,35 +7,24 @@ import './TodoList.css';
 export default function TodoList() {
     const { todoList, setTodoList } = useTodo();
 
-    const handleDelete = (id) => {
-        deleteTodo(id)
-            .then((response) => {
-                setTodoList((todos) => todos.filter(todo => todo.id !== response.data.id));
-            });
+    const handleDelete = async (id) => {
+        const { data } = await deleteTodo(id)
+        if (!data && !data.id) return false;
+        setTodoList(todos => todos.filter(todo => todo.id !== data.id));
     };
 
-    const handleMark = (id, mark) => {
-        updateTodo(id, { isMarked: mark })
-            .then((response) => {
-                setTodoList((todos) => todos.map(todo => {
-                    if (todo.id === response.data.id) {
-                        return response.data;
-                    }
-                    return todo
-                }))
+    const handleUpdate = async (id, updateField) => {
+        const { data } = await updateTodo(id, updateField)
+        if (!data && !data.id) return false;
+        setTodoList(todos => {
+            const updatedTodos = todos.map(todo => {
+                if (todo.id === data.id) {
+                    return data;
+                }
+                return todo;
             });
-    };
-
-    const handleUpdate = (id, newTask) => {
-        updateTodo(id, { task: newTask })
-            .then((response) => {
-                setTodoList((todos) => todos.map(todo => {
-                    if (todo.id === response.data.id) {
-                        return response.data;
-                    }
-                    return todo
-                }))
-            });
+            return updatedTodos;
+        });
     };
 
     return (
@@ -45,12 +34,12 @@ export default function TodoList() {
                     return (
                         <Todo
                             key={i}
-                            id={i}
+                            id={todo.id}
                             task={todo.task}
                             isMarked={todo.isMarked}
                             deleteTask={() => { handleDelete(todo.id) }}
-                            markTask={() => { handleMark(todo.id, !todo.isMarked) }}
-                            updateTodos={(newTask) => { handleUpdate(todo.id, newTask) }}
+                            markTask={() => { handleUpdate(todo.id, { isMarked: !todo.isMarked }) }}
+                            updateTodos={(newTask) => { handleUpdate(todo.id, { task: newTask }) }}
                         />
                     )
                 })

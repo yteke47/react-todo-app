@@ -28,6 +28,11 @@
     cursor: pointer;
 }
 
+.todoAdd form button.disabled {
+    opacity: 0.5;
+}
+
+
 .todoAdd form button .icon {
     color: aliceblue;
     width: 100%;
