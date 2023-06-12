@@ -8,7 +8,7 @@ const getAuthToken = () => {
 };
 
 const httpClient = axios.create({
-    baseURL: 'http://localhost:4523',
+    baseURL: 'https://yteke47-todo-app-backend.herokuapp.com',
     responseType: 'json'
 });
 
