@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MdDone, MdOutlineDeleteSweep, MdRemoveDone, MdHighlightOff, MdEdit } from 'react-icons/md';
 import { useTodo } from '../../../context/TodoContext';
+import { useLoading } from '../../../context/LoadingContext';
 
 import './Todo.css'
 
@@ -9,6 +10,7 @@ export function Todo({ task, isMarked, deleteTask, markTask, updateTodos }) {
     const [edit, setEdit] = useState(false);
     const [todo, setTodo] = useState('');
     const { todoList } = useTodo();
+    const { loading } = useLoading();
 
     useEffect(() => {
         setEdit(false)
@@ -17,24 +19,20 @@ export function Todo({ task, isMarked, deleteTask, markTask, updateTodos }) {
     const handleEdit = () => {
         if (isMarked) return false;
         setEdit(true);
-    }
-
-    const handleChange = (e) => {
-        setTodo(e.target.value)
+        setTodo(task);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!todo.trim()) return false;
-        console.log(e);
+        if (!todo.trim() || loading) return false;
         updateTodos(todo);
     }
 
     const handleCancel = (e) => {
-        console.log(e);
         setEdit(false);
-        setTodo('');
     }
+
+    const isButtonDisabled = edit || loading
 
     return (
         <div className={`todo ${isMarked ? 'marked' : ''}`}>
@@ -43,7 +41,7 @@ export function Todo({ task, isMarked, deleteTask, markTask, updateTodos }) {
                     <form className='todo-update' onSubmit={handleSubmit}>
                         <input
                             className='todoEdit'
-                            onChange={handleChange}
+                            onChange={e => setTodo(e.target.value)}
                             value={todo}
                         />
                         <button
@@ -67,7 +65,7 @@ export function Todo({ task, isMarked, deleteTask, markTask, updateTodos }) {
                             !isMarked &&
                             <button
                                 onClick={handleEdit}
-                                disabled={edit}
+                                disabled={isButtonDisabled}
                                 style={{ opacity: edit ? 0.5 : 1 }}
                             >
                                 <MdEdit className='icon' />
@@ -88,7 +86,7 @@ export function Todo({ task, isMarked, deleteTask, markTask, updateTodos }) {
                         </button>
                         <button
                             onClick={deleteTask}
-                            disabled={edit}
+                            disabled={isButtonDisabled}
                             style={{ opacity: edit ? 0.5 : 1 }}
                         >
                             <MdOutlineDeleteSweep className='icon' />
