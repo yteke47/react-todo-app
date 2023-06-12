@@ -1,12 +1,15 @@
 import { useTodo } from '../../../context/TodoContext';
 import { clearCompleted } from '../../../api/todoApi';
+import { useLoading } from '../../../context/LoadingContext';
 
 import './style.css'
 
 export default function Footer() {
     const { todoList, setTodoList } = useTodo();
+    const { loading } = useLoading();
 
     const deleteCompletedTodo = async () => {
+        if (loading) return false;
         const response = await clearCompleted();
         if (response.status === 200) {
             setTodoList(todos => todos.filter(todo => !todo.isMarked));

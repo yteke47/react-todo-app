@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { useAuth } from './context/AuthContext';
@@ -12,18 +12,24 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
   const { auth, logOut } = useAuth();
 
-  httpClient.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      notifyError(error.response);
-      if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-        logOut();
+  useEffect(() => {
+    const responseInterceptor = httpClient.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        notifyError(error.response);
+        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+          logOut();
+        }
+        return Promise.reject(error);
       }
-      return Promise.reject(error);
-    }
-  );
+    );
+
+    return () => {
+      httpClient.interceptors.response.eject(responseInterceptor);
+    };
+  }, [logOut]);
 
   const notifyError = (error) => {
     let errorMessage = "Bir hata oluştu.";
