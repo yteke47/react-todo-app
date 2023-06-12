@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from './context/AuthContext';
 import httpClient from './api/httpClient';
 import TodoComponent from './components/todoComponent';
-import LoginComponent from './components/loginComponent';
+import AuthComponent from './components/authComponent';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -73,7 +73,7 @@ export default function App() {
         theme="light"
       />
       <div className="container">
-        {auth ? <TodoComponent /> : <LoginComponent />}
+        {auth ? <TodoComponent /> : <AuthComponent />}
       </div>
     </div>
   );

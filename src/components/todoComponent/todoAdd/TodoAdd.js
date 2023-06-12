@@ -3,7 +3,7 @@ import { MdAdd } from 'react-icons/md';
 import { useTodo } from '../../context/../../context/TodoContext';
 import { addTodo } from '../../../api/todoApi';
 
-import './TodoAdd.css';
+import './style.css';
 
 export default function TodoAdd() {
     const [todo, setTodo] = useState({ task: '' });

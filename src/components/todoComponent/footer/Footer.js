@@ -1,7 +1,7 @@
 import { useTodo } from '../../../context/TodoContext';
 import { clearCompleted } from '../../../api/todoApi';
 
-import './Footer.css'
+import './style.css'
 
 export default function Footer() {
     const { todoList, setTodoList } = useTodo();
