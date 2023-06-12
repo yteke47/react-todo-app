@@ -1,19 +1,19 @@
-.loginContainer .loginForm {
+.authContainer .authForm {
     width: 100%;
     height: 100%;
 }
 
-.loginContainer .loginForm>div {
+.authContainer .authForm>div {
     width: 100%;
     margin: 10px 0;
 }
 
-.loginContainer .loginForm .label {
+.authContainer .authForm .label {
     font-size: medium;
     padding-bottom: 10px;
 }
 
-.loginContainer .loginForm input {
+.authContainer .authForm input {
     width: 100%;
     height: 40px;
     padding: 10px;
@@ -22,7 +22,7 @@
     border-radius: 8px;
 }
 
-.loginContainer .loginForm input:focus {
+.authContainer .authForm input:focus {
     outline: none !important;
     border-color: #719ECE;
 }
@@ -31,17 +31,17 @@
     border-color: #b01b10;
 }
 
-.loginContainer .loginForm .error {
+.authContainer .authForm .error {
     font-size: small;
     padding: 5px;
     color: #b01b10;
 }
 
-.loginContainer hr {
+.authContainer hr {
     margin: 20px 0;
 }
 
-.loginContainer button {
+.authContainer button {
     width: 100%;
     padding: 6px;
     background-color: #911bf2;

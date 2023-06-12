@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { register } from '../../../api/authApi';
-import { useAuth } from '../../../context/AuthContext';
+import { register } from '../../api/authApi';
+import { useAuth } from '../../context/AuthContext';
 
 const RegisterForm = () => {
     const { setUser } = useAuth();
@@ -49,7 +49,7 @@ const RegisterForm = () => {
             validate={validateForm}
             onSubmit={handleSubmit}
         >
-            <Form className='loginForm'>
+            <Form className='authForm'>
                 <div className='emailContainer'>
                     <label className='label' htmlFor="email">E-posta:</label>
                     <Field type="email" id="email" name="email" />

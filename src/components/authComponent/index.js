@@ -4,12 +4,12 @@ import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import './style.css'
 import 'react-tabs/style/react-tabs.css';
 
-import LoginForm from './loginForm/LoginForm';
-import RegisterForm from './registerForm/RegisterForm';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
-const LoginComponent = () => {
+const AuthComponent = () => {
     return (
-        <div className='loginContainer'>
+        <div className='authContainer'>
             <Tabs>
                 <TabList>
                     <Tab>Giriş</Tab>
@@ -17,7 +17,7 @@ const LoginComponent = () => {
                 </TabList>
 
                 <TabPanel>
-                    <LoginForm ></LoginForm>
+                    <LoginForm></LoginForm>
                 </TabPanel>
                 <TabPanel>
                     <RegisterForm></RegisterForm>
@@ -27,4 +27,4 @@ const LoginComponent = () => {
     );
 };
 
-export default LoginComponent;
+export default AuthComponent;

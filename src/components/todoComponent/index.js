@@ -9,7 +9,7 @@ import { TodoProvider } from '../../context/TodoContext'
 function TodoComponent() {
     return (
         <TodoProvider>
-            <Header></Header>
+            <Header />
             <TodoAdd />
             <TodoList />
             <Footer />
