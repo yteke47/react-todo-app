@@ -4,6 +4,10 @@ export const deleteTodo = (id) => {
     return httpClient.delete(`/deleteTodo/${id}`);
 };
 
+export const clearCompleted = () => {
+    return httpClient.delete('clearCompleted');
+}
+
 export const updateTodo = (id, updatedFields) => {
     return httpClient.put(`/updateTodo/${id}`, updatedFields);
 };
