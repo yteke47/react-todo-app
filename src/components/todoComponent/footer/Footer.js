@@ -1,19 +1,17 @@
 import { useTodo } from '../../../context/TodoContext';
-import axios from 'axios';
+import { clearCompleted } from '../../../api/todoApi';
 
 import './Footer.css'
 
 export default function Footer() {
     const { todoList, setTodoList } = useTodo();
 
-    const deleteCompletedTodo = () => {
-        axios.delete(`http://localhost:4523/todos/clearCompleted`)
-            .then((response) => {
-                setTodoList(response.data)
-            });
+    const deleteCompletedTodo = async () => {
+        const response = await clearCompleted();
+        if (response.status === 200) {
+            setTodoList(todos => todos.filter(todo => !todo.isMarked));
+        }
     }
-
-
 
     const isButtonDisabled = todoList.length > 0 && todoList.find((todo) => todo.isMarked) ? false : true;
     const remaningTodos = todoList.filter((todo) => !todo.isMarked).length

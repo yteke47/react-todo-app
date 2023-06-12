@@ -7,8 +7,9 @@ const TodoProvider = ({ children }) => {
     const [todoList, setTodoList] = useState([]);
 
     useEffect(() => {
-        getTodos().then((response) => {
-            setTodoList(response.data);
+        getTodos().then(({ data }) => {
+            if (!data) return false;
+            setTodoList(data);
         });
     }, []);
 

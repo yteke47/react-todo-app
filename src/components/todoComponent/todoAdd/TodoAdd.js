@@ -6,26 +6,16 @@ import { addTodo } from '../../../api/todoApi';
 import './TodoAdd.css';
 
 export default function TodoAdd() {
-    const [todo, setTodo] = useState({ task: '', isMarked: false });
+    const [todo, setTodo] = useState({ task: '' });
     const { setTodoList } = useTodo();
-
-    const handleInputChange = (e) => {
-        setTodo({
-            ...todo,
-            [e.target.name]: e.target.value,
-        });
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!todo.task.trim()) return false;
-        try {
-            const response = await addTodo(todo);
-            setTodoList((todos) => [response.data, ...todos]);
-            setTodo({ task: '', isMarked: false, });
-        } catch (error) {
-            console.error('TodoAdd Error:', error);
-        }
+        const { data } = await addTodo(todo);
+        if (!data) return false;
+        setTodoList(todos => [data, ...todos]);
+        setTodo({ task: '' });
     };
 
     const isButtonDisabled = !todo.task.trim();
@@ -34,8 +24,8 @@ export default function TodoAdd() {
         <div className='todoAdd'>
             <form onSubmit={handleSubmit}>
                 <input
-                    onChange={handleInputChange}
-                    name='task'
+                    onChange={e => setTodo({ task: e.target.value })}
+                    type='text'
                     value={todo.task}
                     placeholder='Add todo'
                 />

@@ -1,0 +1,56 @@
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header>div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account {
+    position: relative;
+}
+
+.account-icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-icon :hover {
+    cursor: pointer;
+}
+
+.account-menu {
+    position: absolute;
+    padding: 8px;
+    right: 0;
+    background-color: rgb(229, 229, 229);
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 8px;
+    margin-top: 80px;
+    opacity: 0;
+    transform: scaleY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    list-style-type: none;
+}
+
+.account.open .account-menu {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.account-menu .account-item {
+    user-select: none;
+    cursor: pointer;
+}

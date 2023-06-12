@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
-import './LoginComponent.css'
+import './style.css'
 import 'react-tabs/style/react-tabs.css';
 
 import LoginForm from './loginForm/LoginForm';
