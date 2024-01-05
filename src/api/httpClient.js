@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
-const baseURL = process.env.API_URL || "/";
+const baseURL = process.env.REACT_APP_API_URL || "/";
 
 const getAuthToken = () => {
     return cookies.get('token') || '';
