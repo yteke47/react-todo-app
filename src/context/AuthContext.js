@@ -8,17 +8,26 @@ const AuthProvider = ({ children }) => {
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     useEffect(() => {
-        if (cookies.token) {
-            setAuth(true);
-        }
+        const checkAuthToken = () => {
+            try {
+                if (cookies.token) {
+                    setAuth(true);
+                }
+            } catch (error) {
+                console.error('Error checking auth token:', error);
+            }
+        };
+
+        checkAuthToken();
     }, [cookies.token]);
+
 
     const setUser = (user) => {
         try {
             setCookie('token', user.token, { secure: true });
             setAuth(true);
         } catch (error) {
-            console.error('Failed to set user:', error);
+            console.error('Error setting user:', error);
         }
     };
 
@@ -27,7 +36,7 @@ const AuthProvider = ({ children }) => {
             removeCookie('token', { secure: true });
             setAuth(false);
         } catch (error) {
-            console.error('Failed to log out:', error);
+            console.error('Error logging out:', error);
         }
     };
 
